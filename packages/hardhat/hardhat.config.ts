@@ -8,9 +8,9 @@ import "hardhat-gas-reporter";
 import "solidity-coverage";
 import "@nomicfoundation/hardhat-verify";
 import "hardhat-deploy";
-import "hardhat-deploy-ethers";
 import { task } from "hardhat/config";
 import generateTsAbis from "./scripts/generateTsAbis";
+import "./scripts/checkBalance";
 
 // If not set, it uses the hardhat account 0 private key.
 // You can generate a random account with `yarn generate` or `yarn account:import` to import your existing PK
@@ -149,5 +149,19 @@ task("deploy").setAction(async (args, hre, runSuper) => {
   // Force run the generateTsAbis script
   await generateTsAbis(hre);
 });
+
+// This is a new task to send ETH to an address
+task("fund", "Sends 1 ETH to a specified address")
+  .addParam("to", "The address to send ETH to")
+  .setAction(async (taskArgs, hre) => {
+    const [sender] = await hre.ethers.getSigners();
+    console.log(`Funding account ${taskArgs.to} from ${sender.address}`);
+    const tx = await sender.sendTransaction({
+      to: taskArgs.to,
+      value: hre.ethers.parseEther("1.0"),
+    });
+    await tx.wait();
+    console.log(`Sent 1 ETH to ${taskArgs.to}`);
+  });
 
 export default config;
