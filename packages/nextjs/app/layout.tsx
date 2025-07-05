@@ -1,21 +1,25 @@
-import "@rainbow-me/rainbowkit/styles.css";
-import { ScaffoldEthAppWithProviders } from "~~/components/ScaffoldEthAppWithProviders";
-import { ThemeProvider } from "~~/components/ThemeProvider";
 import "~~/styles/globals.css";
-import { getMetadata } from "~~/utils/scaffold-eth/getMetadata";
+import { Inter } from "next/font/google";
+// KORREKTUR: Der Name der Komponente muss 'ScaffoldEthAppWithProviders' sein
+import { ScaffoldEthAppWithProviders } from "~~/components/ScaffoldEthAppWithProviders"; 
 
-export const metadata = getMetadata({
-  title: "Scaffold-ETH 2 App",
-  description: "Built with 🏗 Scaffold-ETH 2",
-});
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata = {
+  title: "Kairos App",
+  description: "Your permanent digital diary.",
+};
 
 const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html suppressHydrationWarning>
-      <body>
-        <ThemeProvider enableSystem>
-          <ScaffoldEthAppWithProviders>{children}</ScaffoldEthAppWithProviders>
-        </ThemeProvider>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.className} bg-gray-900 text-white min-h-screen`}>
+        {/* Hier verwenden wir den korrigierten Namen */}
+        <ScaffoldEthAppWithProviders>
+          <div className="flex flex-col min-h-screen">
+            <main className="relative flex flex-col flex-1">{children}</main>
+          </div>
+        </ScaffoldEthAppWithProviders>
       </body>
     </html>
   );

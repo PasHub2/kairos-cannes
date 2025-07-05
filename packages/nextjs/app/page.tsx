@@ -1,14 +1,14 @@
 "use client";
 
 import React from "react";
-import type { NextPage } from "next";
-import { KairosApp } from "~~/components/kairos/KairosApp";
+// import type { NextPage } from "next"; // Typ ist nicht notwendig, wenn nicht direkt verwendet
+import { KairosApp } from "~~/components/kairos/KairosApp"; // <--- DIES IST DER KORREKTE PFAD!
 
-const Home: NextPage = () => {
+const Home = () => { // Geändert von NextPage zu simpler Funktion
   return (
-    <div className="flex items-center justify-center flex-grow p-4">
+    <>
       <KairosApp />
-    </div>
+    </>
   );
 };
 
