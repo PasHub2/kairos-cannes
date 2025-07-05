@@ -13,10 +13,10 @@ const hardhatLocalChain = {
   ...hardhatViemChain,
   rpcUrls: {
     default: {
-      http: [`https://eighty-pets-hunt.loca.lt`], // <--- NEUE BLOCKCHAIN-TUNNEL-URL HIER EINGEFÜGT!
+      http: [`http://127.0.0.1:8545`], // <--- NEUE BLOCKCHAIN-TUNNEL-URL HIER EINGEFÜGT!
     },
     public: {
-      http: [`https://eighty-pets-hunt.loca.lt`], // <--- NEUE BLOCKCHAIN-TUNNEL-URL HIER EINGEFÜGT!
+      http: [`http://127.0.0.1:8545`], // <--- NEUE BLOCKCHAIN-TUNNEL-URL HIER EINGEFÜGT!
     },
   },
 };
