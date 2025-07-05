@@ -1,125 +1,214 @@
+// packages/nextjs/components/kairos/KairosApp.tsx
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
-import { usePrivy, useWallets } from "@privy-io/react-auth";
-import { createWalletClient, custom } from "viem";
-import { hardhat } from "viem/chains";
-import { LoginButton } from "~~/components/auth/LoginButton";
-import deployedContracts from "~~/contracts/deployedContracts";
+import { ChangeEvent, useState } from "react";
+import { usePrivy } from "@privy-io/react-auth";
 import { notification } from "~~/utils/scaffold-eth";
 
-type Step = "nickname" | "capture" | "preview" | "registered";
+// packages/nextjs/components/kairos/KairosApp.tsx
 
-export const KairosApp = () => {
-  const { ready, authenticated, user } = usePrivy();
-  const { wallets } = useWallets();
+// packages/nextjs/components/kairos/KairosApp.tsx
+
+// packages/nextjs/components/kairos/KairosApp.tsx
+
+// packages/nextjs/components/kairos/KairosApp.tsx
+
+// packages/nextjs/components/kairos/KairosApp.tsx
+
+// packages/nextjs/components/kairos/KairosApp.tsx
+
+// packages/nextjs/components/kairos/KairosApp.tsx
+
+// packages/nextjs/components/kairos/KairosApp.tsx
+
+// packages/nextjs/components/kairos/KairosApp.tsx
+
+// packages/nextjs/components/kairos/KairosApp.tsx
+
+type Step = "nickname" | "capture" | "preview" | "saved";
+
+export function KairosApp() {
+  const { ready, authenticated, login } = usePrivy();
 
   const [step, setStep] = useState<Step>("nickname");
   const [nickname, setNickname] = useState("");
-  const [photo, setPhoto] = useState<string | null>(null);
-  const [isRegistering, setIsRegistering] = useState(false);
+  const [note, setNote] = useState("");
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
+  const [savedMomentCid, setSavedMomentCid] = useState<string | null>(null);
 
-  const handleSetNickname = useCallback(async () => {
-    if (!nickname.trim()) return;
+  const handleNicknameSubmit = () => {
+    if (nickname.trim().length < 3) {
+      notification.error("Nickname must be at least 3 characters.");
+      return;
+    }
+    setStep("capture");
+  };
 
-    setIsRegistering(true);
+  const handleImageSelect = (event: ChangeEvent<HTMLInputElement>) => {
+    if (!event.target.files || event.target.files.length === 0) return;
+    const file = event.target.files[0];
+    setImageFile(file);
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImagePreview(reader.result as string);
+    };
+    reader.readAsDataURL(file);
+
+    setStep("preview");
+  };
+
+  const uploadToPinata = async (content: File | Blob, fileName: string) => {
+    const jwt = process.env.NEXT_PUBLIC_PINATA_JWT;
+    if (!jwt) throw new Error("Pinata API Key (JWT) not configured.");
+
+    const formData = new FormData();
+    formData.append("file", content, fileName);
+
+    const response = await fetch("https://api.pinata.cloud/pinning/pinFileToIPFS", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${jwt}` },
+      body: formData,
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error?.reason || `Upload failed: ${response.statusText}`);
+    }
+
+    const data: { IpfsHash: string } = await response.json();
+    return data.IpfsHash;
+  };
+
+  const handleSave = async () => {
+    if (!imageFile) return notification.error("No image file selected.");
+
+    if (!authenticated) {
+      login();
+      notification.info("Please log in to save your moment.");
+      return;
+    }
+
+    setIsSaving(true);
+    notification.info("Securing your moment...");
+
     try {
-      const embeddedWallet = wallets.find(wallet => wallet.walletClientType === "privy");
-      if (!embeddedWallet) throw new Error("User wallet not found!");
+      const imageCid = await uploadToPinata(imageFile, imageFile.name);
+      notification.info("Image secured. Creating note...");
 
-      const provider = await embeddedWallet.getEthereumProvider();
-      const walletClient = createWalletClient({
-        account: embeddedWallet.address as `0x${string}`,
-        chain: hardhat,
-        transport: custom(provider),
-      });
+      const momentData = {
+        version: "1.0",
+        image: `ipfs://${imageCid}`,
+        note: note,
+        createdAt: new Date().toISOString(),
+      };
+      const jsonBlob = new Blob([JSON.stringify(momentData)], { type: "application/json" });
 
-      const contractInfo = deployedContracts[31337].YourContract;
-      const hash = await walletClient.writeContract({
-        address: contractInfo.address,
-        abi: contractInfo.abi,
-        functionName: "setNickname",
-        args: [nickname.trim()],
-      });
+      const momentCid = await uploadToPinata(jsonBlob, "moment.json");
+      setSavedMomentCid(momentCid);
 
-      notification.success("Nickname transaction sent! " + hash.substring(0, 8));
-      setStep("registered");
+      notification.success("Your moment is saved.");
+      setStep("saved");
     } catch (error) {
-      console.error("Error registering nickname:", error);
-      notification.error("Error registering nickname.");
+      console.error("Failed to save:", error);
+      // TECHNICAL FIX: Handle 'unknown' error type
+      let errorMessage = "An unknown error occurred.";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      notification.error(errorMessage);
     } finally {
-      setIsRegistering(false);
+      setIsSaving(false);
     }
-  }, [wallets, nickname]);
+  };
 
-  useEffect(() => {
-    if (step === "preview" && authenticated && wallets.length > 0) {
-      handleSetNickname();
-    }
-  }, [step, authenticated, wallets, handleSetNickname]);
+  if (!ready) {
+    return <div className="loading loading-spinner"></div>;
+  }
 
-  if (!ready) return <span className="loading loading-spinner"></span>;
+  return (
+    <div className="card w-96 bg-base-100 shadow-xl">
+      <div className="card-body items-center text-center">
+        <h2 className="card-title">Kairos</h2>
+        <p className="text-sm -mt-2 mb-4">Capture a moment.</p>
 
-  if (!authenticated) {
-    if (step === "nickname") {
-      return (
-        <div className="flex flex-col items-center justify-center text-center p-8 bg-base-100 rounded-2xl shadow-lg max-w-md w-full">
-          <h2 className="text-2xl font-bold mb-4">Enter a nickname to start</h2>
-          <input
-            type="text"
-            placeholder="your-nickname"
-            className="input input-bordered w-full max-w-xs mb-4"
-            value={nickname}
-            onChange={e => setNickname(e.target.value)}
-          />
-          <button
-            className="btn btn-primary"
-            onClick={() => {
-              if (nickname.trim()) setStep("capture");
-            }}
-            disabled={!nickname.trim()}
-          >
-            Continue
-          </button>
-        </div>
-      );
-    }
-    if (step === "capture" || step === "preview") {
-      return (
-        <div className="flex flex-col items-center justify-center text-center p-8 bg-base-100 rounded-2xl shadow-lg max-w-md w-full">
-          <h2 className="text-2xl font-bold mb-4">Your Moment</h2>
-          {photo && <img src={photo} alt="Captured moment" className="rounded-lg shadow-lg mb-6 max-w-sm w-full" />}
-          <p className="mb-6">Create an account to save this moment on-chain, forever.</p>
-          <div className="flex space-x-4">
-            <button className="btn btn-ghost" onClick={() => setPhoto("https://i.imgur.com/gBFyU5E.png")}>
-              Retake
+        {step === "nickname" && (
+          <div className="form-control w-full">
+            <label className="label">
+              <span className="label-text mx-auto">Create your Nickname</span>
+            </label>
+            <input
+              type="text"
+              placeholder="e.g., 'aurelius'"
+              className="input input-bordered"
+              value={nickname}
+              onChange={e => setNickname(e.target.value)}
+            />
+            <button className="btn btn-primary mt-4" onClick={handleNicknameSubmit}>
+              Continue
             </button>
-            <LoginButton />
           </div>
-        </div>
-      );
-    }
-  }
+        )}
 
-  // UI für eingeloggte Nutzer
-  if (isRegistering) {
-    return (
-      <div className="flex flex-col items-center justify-center text-center p-8">
-        <h2 className="text-2xl font-bold mb-4">Registering your name...</h2>
-        <span className="loading loading-spinner"></span>
+        {step === "capture" && (
+          <div className="w-full">
+            <p className="mb-4">Welcome, {nickname}! Ready to capture a moment?</p>
+            <label htmlFor="image-capture" className="btn btn-accent w-full">
+              Capture Moment
+            </label>
+            <input
+              id="image-capture"
+              type="file"
+              accept="image/*"
+              capture="environment"
+              onChange={handleImageSelect}
+              className="hidden"
+            />
+          </div>
+        )}
+
+        {step === "preview" && imagePreview && (
+          <div className="w-full">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={imagePreview} alt="Your captured moment" className="rounded-lg mb-4 w-full" />
+            <textarea
+              className="textarea textarea-bordered w-full"
+              placeholder="Add a note to your moment..."
+              value={note}
+              onChange={e => setNote(e.target.value)}
+            ></textarea>
+            <button
+              className={`btn btn-primary w-full mt-4 ${isSaving ? "loading" : ""}`}
+              onClick={handleSave}
+              disabled={isSaving}
+            >
+              {isSaving ? "Saving..." : "Save"}
+            </button>
+            <button className="btn btn-ghost btn-sm mt-2" onClick={() => setStep("capture")}>
+              Try again
+            </button>
+          </div>
+        )}
+
+        {step === "saved" && savedMomentCid && (
+          <div className="w-full">
+            <h3 className="text-xl font-bold text-success">Saved!</h3>
+            <p className="mt-2">This memory is now permanently yours.</p>
+            <p className="text-xs break-all mt-4 opacity-60">Proof of authenticity: {savedMomentCid}</p>
+            <button
+              className="btn btn-secondary w-full mt-6"
+              onClick={() => {
+                setNote("");
+                setStep("capture");
+              }}
+            >
+              Capture another moment
+            </button>
+          </div>
+        )}
       </div>
-    );
-  }
-
-  if (step === "registered" || (authenticated && !isRegistering)) {
-    return (
-      <div className="flex flex-col items-center justify-center text-center p-8 bg-base-100 rounded-2xl shadow-lg max-w-md w-full">
-        <h2 className="text-2xl font-bold mb-4">Welcome, {nickname}.kairos.eth!</h2>
-        <p>Your on-chain identity is ready.</p>
-        <p className="text-xs mt-4">Wallet: {user?.wallet?.address}</p>
-      </div>
-    );
-  }
-
-  return null;
-};
+    </div>
+  );
+}
