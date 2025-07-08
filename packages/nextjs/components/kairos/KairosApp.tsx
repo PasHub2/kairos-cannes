@@ -2,19 +2,22 @@
 import { ChangeEvent, useState } from "react";
 import { usePrivy, useWallets } from "@privy-io/react-auth";
 import { BrowserProvider, Contract } from "ethers";
+import Image from "next/image";
 import deployedContracts from "~~/contracts/deployedContracts";
-import { notification } from "~~/utils/scaffold-eth"; // Stellen Sie sicher, dass dies richtig importiert ist
+import { notification } from "~~/utils/scaffold-eth";
 
 type Step = "nickname" | "capture" | "preview" | "saving" | "saved" | "gallery";
 
+// MODIFIED: Added imageCid to the Moment interface
 interface Moment {
   imagePreview: string;
+  imageCid: string; 
   note: string;
   timestamp: number;
 }
 
 export function KairosApp() {
-  const { ready, authenticated, login } = usePrivy();
+  const { ready, authenticated, login, user } = usePrivy();
   const { wallets } = useWallets();
 
   const [step, setStep] = useState<Step>("nickname");
@@ -24,7 +27,7 @@ export function KairosApp() {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
   const [finalCid, setFinalCid] = useState<string | null>(null);
-  const [moments, setMoments] = useState<Moment[]>([]); // Lokaler Speicher für Momente
+  const [moments, setMoments] = useState<Moment[]>([]);
 
   const handleNicknameSubmit = () => {
     if (nickname.trim().length < 2) {
@@ -64,18 +67,29 @@ export function KairosApp() {
 
   const handleSave = async () => {
     if (!imageFile || !imagePreview) return notification.error("No image file selected.");
-    const embeddedWallet = wallets[0];
-    if (!authenticated || !embeddedWallet) {
-      login();
-      return;
+    if (!authenticated || !user?.wallet) {
+        login();
+        return;
+    }
+    const embeddedWallet = wallets.find(wallet => wallet.address === user.wallet?.address);
+    if (!embeddedWallet) {
+        notification.error("Could not find your wallet. Please log in again.");
+        return;
     }
 
     setIsSaving(true);
     setStep("saving");
-    notification.info("Saving your moment...");
-
+    
     try {
+      notification.info("Uploading image to IPFS...");
       const imageCid = await uploadToPinata(imageFile, imageFile.name);
+
+      // --- ADDED VALIDATION BLOCK ---
+      if (!imageCid || typeof imageCid !== 'string' || imageCid.length < 46) {
+          throw new Error("Failed to get a valid CID for the image. The upload may have failed silently.");
+      }
+
+      notification.info("Uploading metadata...");
       const momentData = {
         name: `Kairos Moment by ${nickname}`,
         description: note,
@@ -87,13 +101,18 @@ export function KairosApp() {
       };
       const jsonBlob = new Blob([JSON.stringify(momentData)], { type: "application/json" });
       const momentJsonCid = await uploadToPinata(jsonBlob, "moment.json");
+      
+      if (!momentJsonCid) {
+          throw new Error("Failed to get a valid CID for the metadata JSON.");
+      }
+
       setFinalCid(momentJsonCid);
 
+      notification.info("Saving moment on-chain...");
       const ethereumProvider = await embeddedWallet.getEthereumProvider();
       const ethersProvider = new BrowserProvider(ethereumProvider);
       const signer = await ethersProvider.getSigner();
 
-      // Ensure the correct chain ID is used for localhost (31337)
       const kairosContractAddress = deployedContracts[31337].Kairos.address;
       const kairosContractAbi = deployedContracts[31337].Kairos.abi;
       const kairosContract = new Contract(kairosContractAddress, kairosContractAbi, signer);
@@ -102,13 +121,15 @@ export function KairosApp() {
       await tx.wait();
 
       notification.success("Saved forever!");
-      setMoments(prev => [...prev, { imagePreview, note, timestamp: Date.now() }]); // Moment zur Galerie hinzufügen
+      // MODIFIED: Save the permanent imageCid, not the temporary preview
+      setMoments(prev => [...prev, { imagePreview: imagePreview!, imageCid: imageCid, note, timestamp: Date.now() }]);
       setStep("saved");
+
     } catch (error) {
       let errorMessage = "An unknown error occurred.";
       if (error instanceof Error) errorMessage = error.message;
       notification.error(errorMessage);
-      setStep("preview"); // Zurück zur Vorschau, falls Fehler auftritt
+      setStep("preview");
     } finally {
       setIsSaving(false);
     }
@@ -199,7 +220,7 @@ export function KairosApp() {
 
         {step === "preview" && imagePreview && (
           <div className="bg-gray-800 p-6 rounded-2xl shadow-xl animate-fade-in space-y-4">
-            <img src={imagePreview} alt="Your captured moment" className="rounded-lg w-full" />
+            <Image src={imagePreview} alt="Your captured moment" className="rounded-lg w-full" width={400} height={300} />
             <textarea
               className="w-full px-4 py-3 bg-gray-700 rounded-lg border-2 border-gray-600 focus:border-blue-500 focus:outline-none transition"
               placeholder="Add a few words..."
@@ -264,14 +285,14 @@ export function KairosApp() {
             {moments.length === 0 ? (
               <p className="text-gray-400 text-center">No moments saved yet. Capture one!</p>
             ) : (
-              <div className="grid grid-cols-2 gap-4 max-h-96 overflow-y-auto"> {/* Anpassung für Scrollbarkeit */}
+              // MODIFIED: Use IPFS gateway to display images
+              <div className="grid grid-cols-2 gap-4 max-h-96 overflow-y-auto">
                 {moments.map((moment, index) => (
                   <div key={index} className="relative bg-gray-700 rounded-lg overflow-hidden">
-                    <img src={moment.imagePreview} alt={`Moment ${index}`} className="w-full h-32 object-cover" />
+                    <Image src={`https://ipfs.io/ipfs/${moment.imageCid}`} alt={`Moment ${index}`} className="w-full h-32 object-cover" width={200} height={128} />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent p-2 flex flex-col justify-end">
                       <p className="text-white text-sm font-medium truncate">{moment.note || 'No note'}</p>
                       <p className="text-gray-300 text-xs">{new Date(moment.timestamp).toLocaleDateString()}</p>
-                      {/* Circles Teaser Icon */}
                       <div
                         className="absolute top-2 right-2 p-1 bg-gray-900 rounded-full cursor-pointer opacity-70 hover:opacity-100 transition-opacity"
                         onClick={() => notification.info("Circles coming soon!")}
@@ -289,7 +310,6 @@ export function KairosApp() {
         )}
       </div>
 
-      {/* Navigation Bar */}
       <div className="w-full max-w-sm mx-auto bg-gray-800 rounded-xl flex justify-around items-center py-3 px-4 mt-8 shadow-lg">
         <button
           className={`flex flex-col items-center p-2 rounded-lg transition-colors ${
