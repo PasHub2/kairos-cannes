@@ -1,49 +1,29 @@
-// packages/nextjs/app/layout.tsx
-"use client"; // Steht ganz oben und macht diese Komponente zum Client Component
+"use client";
 
 import "~~/styles/globals.css";
 import { Inter } from "next/font/google";
+import { Footer } from "~~/components/Footer";
+import { Header } from "~~/components/Header";
 import { ScaffoldEthAppWithProviders } from "~~/components/ScaffoldEthAppWithProviders";
-import { useEffect } from "react"; // <--- Import bleibt, da er gebraucht wird
+import { ThemeProvider } from "~~/components/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
-// METADATA-BLOCK ENTFERNT, da er nicht aus einer Client Component exportiert werden darf
-/*
-export const metadata = {
-  title: "Kairos App",
-  description: "Your permanent digital diary.",
-};
-*/
-
-const ScaffoldEthApp = ({ children }: { children: React. immense.ReactNode }) => {
-  // <--- useEffect HOOK BLEIBT, da er die Fehler unterdrückt
-  useEffect(() => {
-    const originalError = console.error;
-    console.error = (...args) => {
-      if (
-        typeof args[0] === 'string' &&
-        args[0].includes("React does not recognize the 'isActive' prop on a DOM element.")
-      ) {
-        return; // Diese spezifische Fehlermeldung unterdrücken
-      }
-      originalError(...args); // Alle anderen Fehlermeldungen normal loggen
-    };
-    return () => {
-      console.error = originalError; // Beim Unmount wiederherstellen
-    };
-  }, []);
-  // <--- ENDE DES useEffect HOOKS
-
-
+const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
+  // The problematic useEffect hook has been removed to ensure application stability.
+  
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} bg-gray-900 text-white min-h-screen`}>
-        <ScaffoldEthAppWithProviders>
-          <div className="flex flex-col min-h-screen">
-            <main className="relative flex flex-col flex-1">{children}</main>
-          </div>
-        </ScaffoldEthAppWithProviders>
+      <body className={`${inter.className} bg-gray-900 text-white`}>
+        <ThemeProvider enableSystem>
+          <ScaffoldEthAppWithProviders>
+            <div className="flex flex-col min-h-screen">
+              <Header />
+              <main className="relative flex flex-col flex-1">{children}</main>
+              <Footer />
+            </div>
+          </ScaffoldEthAppWithProviders>
+        </ThemeProvider>
       </body>
     </html>
   );
