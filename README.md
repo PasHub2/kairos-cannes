@@ -1,88 +1,56 @@
-# 🏗 Scaffold-ETH 2
+# BeYou Project Overview
 
-<h4 align="center">
-  <a href="https://docs.scaffoldeth.io">Documentation</a> |
-  <a href="https://scaffoldeth.io">Website</a>
-</h4>
+BeYou is a decentralized social media platform designed as a "blockchain-verified life diary." It addresses key challenges of digital identity control and ease of entry into Web3, while focusing on authentic user experiences and user data ownership.
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+## Vision & Philosophy
 
-⚙️ Built using NextJS, RainbowKit, Foundry/Hardhat, Wagmi, Viem, and Typescript.
+- Empowers users to control and monetize their digital memories as NFTs.
+- Content is private by default; sharing is always intentional.
+- Social interactions occur mainly in small, private "circles" to minimize social pressure.
+- Features a unique "authentic moment" concept: users capture daily moments, which are on-chain verifiable within a strict 2-minute window, setting a new standard for genuine content.
 
-- ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
-- 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
-- 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
-- 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
-- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
+## Business Model & Monetization
 
-![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
+- **Freemium**: Basic app usage is free, with marketplace fees (e.g., 2.5%) for NFT trades and optional Pro subscriptions.
+- **B2B-SaaS**: Brands can run campaigns and access cryptographically verified, user-generated content (Verified UGC).
+- Independence from traditional ad-revenue models.
 
-## Requirements
+## Product Experience & Architecture
 
-Before you begin, you need to install the following tools:
+**Two main modes:**
+- **Diary Mode**: Default, private-only for trusted friends, no ads, no creator content.
+- **Discover Mode**: Optional, public creators, brand content, NFT marketplace, monetization space.
+- Users consciously choose between private journaling and public sharing.
 
-- [Node (>= v20.18.3)](https://nodejs.org/en/download/)
-- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
-- [Git](https://git-scm.com/downloads)
+**Pragmatic hybrid architecture**: combines the performance of centralized apps with blockchain's immutability— a "exit-resistant Instagram".
+- Web3 complexity is fully abstracted away for the user, making onboarding simple and familiar.
 
-## Quickstart
+## Technology & Implementation
 
-To get started with Scaffold-ETH 2, follow the steps below:
+- **Multi-chain architecture**.
+- **NFT minting** for moments and user profiles.
+- **Smart contract wallet creation and management** via Privy.
+- **ZK-proofs and client-side encryption** for privacy.
+- **Built with a monorepo**:
+  - contracts: Hardhat Ethereum smart contracts
+  - backend: Node.js API
+  - mobile: React Native app
+  - web: Next.js dashboard
+- Uses IPFS, PostgreSQL, Redis, OneSignal, WalletConnect, and Dockerized environments.
+- Modular structure to support easy scaling and feature extension.
 
-1. Install the latest version of Scaffold-ETH 2
+## User Flow
 
-```
-npx create-eth@latest
-```
+- Simple onboarding: email login triggers creation of secure, non-custodial wallet; memories are minted as NFTs.
+- Users can create/join private circles for sharing, or engage with public brand communities by choice.
+- Metrics tracked include daily active users, photo capture rate, NFT minting rate, retention, and engagement.
 
-This command will install all the necessary packages and dependencies, so it might take a while.
+## Key Features
 
-> [!NOTE]
-> You can also initialize your project with one of our extensions to add specific features or starter-kits. Learn more in our [extensions documentation](https://docs.scaffoldeth.io/extensions/).
+- Authentic moment capture and on-chain timestamping.
+- NFT ownership of user content.
+- Private circles and public communities.
+- Marketplace for content monetization.
+- Privacy-first via end-to-end encryption and ZK-proofs.
 
-2. Run a local network in the first terminal:
-
-```
-yarn chain
-```
-
-This command starts a local Ethereum network that runs on your local machine and can be used for testing and development. Learn how to [customize your network configuration](https://docs.scaffoldeth.io/quick-start/environment#1-initialize-a-local-blockchain).
-
-3. On a second terminal, deploy the test contract:
-
-```
-yarn deploy
-```
-
-This command deploys a test smart contract to the local network. You can find more information about how to customize your contract and deployment script in our [documentation](https://docs.scaffoldeth.io/quick-start/environment#2-deploy-your-smart-contract).
-
-4. On a third terminal, start your NextJS app:
-
-```
-yarn start
-```
-
-Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
-
-**What's next**:
-
-Visit the [What's next section of our docs](https://docs.scaffoldeth.io/quick-start/environment#whats-next) to learn how to:
-
-- Edit your smart contracts
-- Edit your deployment scripts
-- Customize your frontend
-- Edit the app config
-- Writing and running tests
-- [Setting up external services and API keys](https://docs.scaffoldeth.io/deploying/deploy-smart-contracts#configuration-of-third-party-services-for-production-grade-apps)
-
-## Documentation
-
-Visit our [docs](https://docs.scaffoldeth.io) to learn all the technical details and guides of Scaffold-ETH 2.
-
-To know more about its features, check out our [website](https://scaffoldeth.io).
-
-## Contributing to Scaffold-ETH 2
-
-We welcome contributions to Scaffold-ETH 2!
-
-Please see [CONTRIBUTING.MD](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-ETH 2.
+BeYou combines the addictive "daily moment" of BeReal with true digital ownership, an Instagram-like UX, and cutting-edge privacy for a user-owned social web.
