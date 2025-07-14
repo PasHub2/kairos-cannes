@@ -46,9 +46,9 @@
     "prettier": "^3.5.3",
     "prettier-plugin-solidity": "^1.4.1",
     "solidity-coverage": "^0.8.13",
-    "ts-node": "^10.9.1",
+    "ts-node": "^10.9.2",
     "typechain": "^8.3.2",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.3"
   },
   "dependencies": {
     "@ensdomains/ens-contracts": "^1.5.2",
@@ -57,6 +57,7 @@
     "@typechain/ethers-v6": "^0.5.1",
     "dotenv": "^16.4.5",
     "envfile": "^7.1.0",
+    "node-fetch": "^3.3.2",
     "qrcode": "^1.5.4"
   }
 }

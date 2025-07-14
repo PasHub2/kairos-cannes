@@ -16,6 +16,9 @@
     "vercel:login": "vercel login"
   },
   "dependencies": {
+    "@alchemy/aa-alchemy": "^3.3.0",
+    "@alchemy/aa-core": "^3.3.0",
+    "@alchemy/aa-ethers": "^3.3.0",
     "@heroicons/react": "^2.1.5",
     "@privy-io/react-auth": "^2.17.3",
     "@rainbow-me/rainbowkit": "2.2.7",

@@ -1,0 +1,180 @@
+{
+  "address": "0x64EE6C4f7A91245E5E787C436E14041fA0c86DB9",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_ensAddress",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "ens",
+      "outputs": [
+        {
+          "internalType": "contract ENS",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "label",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "register",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "rootNode",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0xc248ad94e86e36bce46031173f28a1b2f0819682a911cf5513a3e652db5352d0",
+  "receipt": {
+    "to": null,
+    "from": "0x066eA7aDCF17aD1e248d6D22A81cb494067cb340",
+    "contractAddress": "0x64EE6C4f7A91245E5E787C436E14041fA0c86DB9",
+    "transactionIndex": 281,
+    "gasUsed": "333225",
+    "logsBloom": "0x00000000000000000000000000100000000000000000000020000000000000000000000000000000000000000000000000000000000010000000200000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000800000000000000000000000000000000000040000000000000000000000000000000000004000000000000000000000000000041000000000000000100000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x5fafe853cb1d71f2125384217e2bfa41e5c771636334c92492867d0ad812cd8a",
+    "transactionHash": "0xc248ad94e86e36bce46031173f28a1b2f0819682a911cf5513a3e652db5352d0",
+    "logs": [
+      {
+        "transactionIndex": 281,
+        "blockNumber": 8760845,
+        "transactionHash": "0xc248ad94e86e36bce46031173f28a1b2f0819682a911cf5513a3e652db5352d0",
+        "address": "0x12C76c8ff0d98486bA6670f0F4001AA63B3aA5AA",
+        "topics": [
+          "0xce0457fe73731f824cc272376169235128c118b49d344817417c6d108d155e82",
+          "0x93cdeb708b7545dc668eb9280176169d1c33cfd8ed6f04690a0bcc88a93fc4ae",
+          "0xa8cb0ac9d18025506658a39c7132c1bbd7454cd074386ab073ae83687c2d55fa"
+        ],
+        "data": "0x00000000000000000000000064ee6c4f7a91245e5e787c436e14041fa0c86db9",
+        "logIndex": 321,
+        "blockHash": "0x5fafe853cb1d71f2125384217e2bfa41e5c771636334c92492867d0ad812cd8a"
+      }
+    ],
+    "blockNumber": 8760845,
+    "cumulativeGasUsed": "26786778",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0x12C76c8ff0d98486bA6670f0F4001AA63B3aA5AA"
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "12d2a6164cc4b19b5d33773122575766",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.24+commit.e11b9ed9\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_ensAddress\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"ens\",\"outputs\":[{\"internalType\":\"contract ENS\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"label\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"register\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"rootNode\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/ENSRegistrar.sol\":\"ENSRegistrar\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@ensdomains/ens-contracts/contracts/registry/ENS.sol\":{\"content\":\"//SPDX-License-Identifier: MIT\\npragma solidity >=0.8.4;\\n\\ninterface ENS {\\n    // Logged when the owner of a node assigns a new owner to a subnode.\\n    event NewOwner(bytes32 indexed node, bytes32 indexed label, address owner);\\n\\n    // Logged when the owner of a node transfers ownership to a new account.\\n    event Transfer(bytes32 indexed node, address owner);\\n\\n    // Logged when the resolver for a node changes.\\n    event NewResolver(bytes32 indexed node, address resolver);\\n\\n    // Logged when the TTL of a node changes\\n    event NewTTL(bytes32 indexed node, uint64 ttl);\\n\\n    // Logged when an operator is added or removed.\\n    event ApprovalForAll(\\n        address indexed owner,\\n        address indexed operator,\\n        bool approved\\n    );\\n\\n    function setRecord(\\n        bytes32 node,\\n        address owner,\\n        address resolver,\\n        uint64 ttl\\n    ) external;\\n\\n    function setSubnodeRecord(\\n        bytes32 node,\\n        bytes32 label,\\n        address owner,\\n        address resolver,\\n        uint64 ttl\\n    ) external;\\n\\n    function setSubnodeOwner(\\n        bytes32 node,\\n        bytes32 label,\\n        address owner\\n    ) external returns (bytes32);\\n\\n    function setResolver(bytes32 node, address resolver) external;\\n\\n    function setOwner(bytes32 node, address owner) external;\\n\\n    function setTTL(bytes32 node, uint64 ttl) external;\\n\\n    function setApprovalForAll(address operator, bool approved) external;\\n\\n    function owner(bytes32 node) external view returns (address);\\n\\n    function resolver(bytes32 node) external view returns (address);\\n\\n    function ttl(bytes32 node) external view returns (uint64);\\n\\n    function recordExists(bytes32 node) external view returns (bool);\\n\\n    function isApprovedForAll(\\n        address owner,\\n        address operator\\n    ) external view returns (bool);\\n}\\n\",\"keccak256\":\"0x8e208b44d5dbf22552fe72d79b45c640855b84fbc9ee21f4c3bb4bfe81cbe8db\",\"license\":\"MIT\"},\"contracts/ENSRegistrar.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.20;\\n\\nimport \\\"@ensdomains/ens-contracts/contracts/registry/ENS.sol\\\";\\n\\ncontract ENSRegistrar {\\n    ENS public ens;\\n    bytes32 public rootNode;\\n    address public owner;\\n\\n    modifier onlyOwner() {\\n        require(msg.sender == owner, \\\"Only the contract owner can call this function\\\");\\n        _;\\n    }\\n\\n    // The constructor now handles all setup atomically.\\n    constructor(address _ensAddress) {\\n        owner = msg.sender;\\n        ens = ENS(_ensAddress);\\n\\n        // 1. Calculate the node for 'kairos.eth'\\n        rootNode = keccak256(abi.encodePacked(keccak256(abi.encodePacked(bytes32(0), keccak256(\\\"eth\\\"))), keccak256(\\\"kairos\\\")));\\n\\n        // 2. The deployer (owner) sets this contract as the owner of the 'kairos.eth' node.\\n        // This grants the contract permission to create subdomains.\\n        ens.setSubnodeOwner(keccak256(abi.encodePacked(bytes32(0), keccak256(\\\"eth\\\"))), keccak256(\\\"kairos\\\"), address(this));\\n    }\\n\\n    // The register function is now protected.\\n    function register(string calldata label, address newOwner) external {\\n        bytes32 labelHash = keccak256(bytes(label));\\n        ens.setSubnodeOwner(rootNode, labelHash, newOwner);\\n    }\\n\\n    function transferOwnership(address newOwner) external onlyOwner {\\n        owner = newOwner;\\n    }\\n}\",\"keccak256\":\"0x4d03d3ec969d08f4944dfc8cd1d84b8dcef2bc3fe2451953b433e76b5507b72c\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5060405161055838038061055883398101604081905261002f9161018e565b60028054336001600160a01b031991821617909155600080549091166001600160a01b0383161781556040805160208101929092526000805160206105188339815191529082015260600160408051601f198184030181528282528051602091820120908301526000805160206105388339815191529082015260600160408051808303601f1901815282825280516020918201206001556000805491840152600080516020610518833981519152918301919091526001600160a01b0316906306ab59239060600160408051601f198184030181529082905280516020909101206001600160e01b031960e084901b168252600482015260008051602061053883398151915260248201523060448201526064016020604051808303816000875af1158015610163573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061018791906101be565b50506101d7565b6000602082840312156101a057600080fd5b81516001600160a01b03811681146101b757600080fd5b9392505050565b6000602082840312156101d057600080fd5b5051919050565b610332806101e66000396000f3fe608060405234801561001057600080fd5b50600436106100575760003560e01c80631e59c5291461005c5780633f15457f146100715780638da5cb5b146100a1578063f2fde38b146100b4578063faff50a8146100c7575b600080fd5b61006f61006a366004610230565b6100de565b005b600054610084906001600160a01b031681565b6040516001600160a01b0390911681526020015b60405180910390f35b600254610084906001600160a01b031681565b61006f6100c23660046102b1565b61017d565b6100d060015481565b604051908152602001610098565b600083836040516100f09291906102d3565b6040519081900381206000546001546306ab592360e01b84526004840152602483018290526001600160a01b03858116604485015291935016906306ab5923906064016020604051808303816000875af1158015610152573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061017691906102e3565b5050505050565b6002546001600160a01b031633146101f25760405162461bcd60e51b815260206004820152602e60248201527f4f6e6c792074686520636f6e7472616374206f776e65722063616e2063616c6c60448201526d103a3434b990333ab731ba34b7b760911b606482015260840160405180910390fd5b600280546001600160a01b0319166001600160a01b0392909216919091179055565b80356001600160a01b038116811461022b57600080fd5b919050565b60008060006040848603121561024557600080fd5b833567ffffffffffffffff8082111561025d57600080fd5b818601915086601f83011261027157600080fd5b81358181111561028057600080fd5b87602082850101111561029257600080fd5b6020928301955093506102a89186019050610214565b90509250925092565b6000602082840312156102c357600080fd5b6102cc82610214565b9392505050565b8183823760009101908152919050565b6000602082840312156102f557600080fd5b505191905056fea264697066735822122029b20436b6ae968c2bf4d20bd8e298412dee76d893f61db6cba9aa06e832b7fa64736f6c634300081800334f5b812789fc606be1b3b16908db13fc7a9adf7ca72641f84d75b47069d3d7f0a8cb0ac9d18025506658a39c7132c1bbd7454cd074386ab073ae83687c2d55fa",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100575760003560e01c80631e59c5291461005c5780633f15457f146100715780638da5cb5b146100a1578063f2fde38b146100b4578063faff50a8146100c7575b600080fd5b61006f61006a366004610230565b6100de565b005b600054610084906001600160a01b031681565b6040516001600160a01b0390911681526020015b60405180910390f35b600254610084906001600160a01b031681565b61006f6100c23660046102b1565b61017d565b6100d060015481565b604051908152602001610098565b600083836040516100f09291906102d3565b6040519081900381206000546001546306ab592360e01b84526004840152602483018290526001600160a01b03858116604485015291935016906306ab5923906064016020604051808303816000875af1158015610152573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061017691906102e3565b5050505050565b6002546001600160a01b031633146101f25760405162461bcd60e51b815260206004820152602e60248201527f4f6e6c792074686520636f6e7472616374206f776e65722063616e2063616c6c60448201526d103a3434b990333ab731ba34b7b760911b606482015260840160405180910390fd5b600280546001600160a01b0319166001600160a01b0392909216919091179055565b80356001600160a01b038116811461022b57600080fd5b919050565b60008060006040848603121561024557600080fd5b833567ffffffffffffffff8082111561025d57600080fd5b818601915086601f83011261027157600080fd5b81358181111561028057600080fd5b87602082850101111561029257600080fd5b6020928301955093506102a89186019050610214565b90509250925092565b6000602082840312156102c357600080fd5b6102cc82610214565b9392505050565b8183823760009101908152919050565b6000602082840312156102f557600080fd5b505191905056fea264697066735822122029b20436b6ae968c2bf4d20bd8e298412dee76d893f61db6cba9aa06e832b7fa64736f6c63430008180033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 6674,
+        "contract": "contracts/ENSRegistrar.sol:ENSRegistrar",
+        "label": "ens",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_contract(ENS)136"
+      },
+      {
+        "astId": 6676,
+        "contract": "contracts/ENSRegistrar.sol:ENSRegistrar",
+        "label": "rootNode",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_bytes32"
+      },
+      {
+        "astId": 6678,
+        "contract": "contracts/ENSRegistrar.sol:ENSRegistrar",
+        "label": "owner",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_address"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_bytes32": {
+        "encoding": "inplace",
+        "label": "bytes32",
+        "numberOfBytes": "32"
+      },
+      "t_contract(ENS)136": {
+        "encoding": "inplace",
+        "label": "contract ENS",
+        "numberOfBytes": "20"
+      }
+    }
+  }
+}

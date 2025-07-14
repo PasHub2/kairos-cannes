@@ -1,0 +1,231 @@
+{
+  "address": "0x12C76c8ff0d98486bA6670f0F4001AA63B3aA5AA",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "node",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "label",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "NewOwner",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "node",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "resolver",
+          "type": "address"
+        }
+      ],
+      "name": "NewResolver",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "node",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "Transfer",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "node",
+          "type": "bytes32"
+        }
+      ],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "node",
+          "type": "bytes32"
+        }
+      ],
+      "name": "resolver",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "node",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "resolver",
+          "type": "address"
+        }
+      ],
+      "name": "setResolver",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "node",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "label",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "setSubnodeOwner",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0xbc1fca5f98d24c59b1b105226c85c8075325bfcd065a2c03f7109d93ee0b2711",
+  "receipt": {
+    "to": null,
+    "from": "0x066eA7aDCF17aD1e248d6D22A81cb494067cb340",
+    "contractAddress": "0x12C76c8ff0d98486bA6670f0F4001AA63B3aA5AA",
+    "transactionIndex": 116,
+    "gasUsed": "248267",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x14d1b06cd1385133b1eb618acc34d51127a753891919f20d3c7f92dcafcf637e",
+    "transactionHash": "0xbc1fca5f98d24c59b1b105226c85c8075325bfcd065a2c03f7109d93ee0b2711",
+    "logs": [],
+    "blockNumber": 8760844,
+    "cumulativeGasUsed": "9561208",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "12d2a6164cc4b19b5d33773122575766",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.24+commit.e11b9ed9\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"node\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"label\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"NewOwner\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"node\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"resolver\",\"type\":\"address\"}],\"name\":\"NewResolver\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"node\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"node\",\"type\":\"bytes32\"}],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"node\",\"type\":\"bytes32\"}],\"name\":\"resolver\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"node\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"resolver\",\"type\":\"address\"}],\"name\":\"setResolver\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"node\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"label\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"setSubnodeOwner\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"A simple mock ENS registry for local testing\",\"kind\":\"dev\",\"methods\":{},\"title\":\"MockENSRegistry\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/MockENSRegistry.sol\":\"MockENSRegistry\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/MockENSRegistry.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.24;\\n\\n/**\\n * @title MockENSRegistry\\n * @dev A simple mock ENS registry for local testing\\n */\\ncontract MockENSRegistry {\\n    mapping(bytes32 => address) private _owners;\\n    mapping(bytes32 => address) private _resolvers;\\n    \\n    event NewOwner(bytes32 indexed node, bytes32 indexed label, address owner);\\n    event Transfer(bytes32 indexed node, address owner);\\n    event NewResolver(bytes32 indexed node, address resolver);\\n    \\n    constructor() {\\n        // Set the root node owner to the deployer\\n        bytes32 rootNode = 0x0000000000000000000000000000000000000000000000000000000000000000;\\n        _owners[rootNode] = msg.sender;\\n    }\\n    \\n    function setSubnodeOwner(bytes32 node, bytes32 label, address owner) external returns (bytes32) {\\n        bytes32 subnode = keccak256(abi.encodePacked(node, label));\\n        _owners[subnode] = owner;\\n        emit NewOwner(node, label, owner);\\n        return subnode;\\n    }\\n    \\n    function setResolver(bytes32 node, address resolver) external {\\n        require(_owners[node] == msg.sender, \\\"Not authorized\\\");\\n        _resolvers[node] = resolver;\\n        emit NewResolver(node, resolver);\\n    }\\n    \\n    function owner(bytes32 node) external view returns (address) {\\n        return _owners[node];\\n    }\\n    \\n    function resolver(bytes32 node) external view returns (address) {\\n        return _resolvers[node];\\n    }\\n} \",\"keccak256\":\"0x810bb40682e3888f92918a65fb0c9b406e5d90c86437da4bee49be17a9a08331\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5060008080526020527fad3228b676f7d3cd4284a5443f17f1962b36e491b30a40b2405849e597ba5fb580546001600160a01b0319163317905561031c806100596000396000f3fe608060405234801561001057600080fd5b506004361061004c5760003560e01c80630178b8bf1461005157806302571be31461009757806306ab5923146100c05780631896f70a146100e1575b600080fd5b61007a61005f366004610250565b6000908152600160205260409020546001600160a01b031690565b6040516001600160a01b0390911681526020015b60405180910390f35b61007a6100a5366004610250565b6000908152602081905260409020546001600160a01b031690565b6100d36100ce366004610285565b6100f6565b60405190815260200161008e565b6100f46100ef3660046102ba565b610191565b005b6000808484604051602001610115929190918252602082015260400190565b60408051808303601f19018152828252805160209182012060008181528083529290922080546001600160a01b0319166001600160a01b0388169081179091558352909250859187917fce0457fe73731f824cc272376169235128c118b49d344817417c6d108d155e82910160405180910390a3949350505050565b6000828152602081905260409020546001600160a01b031633146101ec5760405162461bcd60e51b815260206004820152600e60248201526d139bdd08185d5d1a1bdc9a5e995960921b604482015260640160405180910390fd5b60008281526001602090815260409182902080546001600160a01b0319166001600160a01b038516908117909155915191825283917f335721b01866dc23fbee8b6b2c7b1e14d6f05c28cd35a2c934239f94095602a0910160405180910390a25050565b60006020828403121561026257600080fd5b5035919050565b80356001600160a01b038116811461028057600080fd5b919050565b60008060006060848603121561029a57600080fd5b83359250602084013591506102b160408501610269565b90509250925092565b600080604083850312156102cd57600080fd5b823591506102dd60208401610269565b9050925092905056fea26469706673582212202dc308aa86148aca412b5b22386f176e7f166f48d86389748c1afe97ba628b5d64736f6c63430008180033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061004c5760003560e01c80630178b8bf1461005157806302571be31461009757806306ab5923146100c05780631896f70a146100e1575b600080fd5b61007a61005f366004610250565b6000908152600160205260409020546001600160a01b031690565b6040516001600160a01b0390911681526020015b60405180910390f35b61007a6100a5366004610250565b6000908152602081905260409020546001600160a01b031690565b6100d36100ce366004610285565b6100f6565b60405190815260200161008e565b6100f46100ef3660046102ba565b610191565b005b6000808484604051602001610115929190918252602082015260400190565b60408051808303601f19018152828252805160209182012060008181528083529290922080546001600160a01b0319166001600160a01b0388169081179091558352909250859187917fce0457fe73731f824cc272376169235128c118b49d344817417c6d108d155e82910160405180910390a3949350505050565b6000828152602081905260409020546001600160a01b031633146101ec5760405162461bcd60e51b815260206004820152600e60248201526d139bdd08185d5d1a1bdc9a5e995960921b604482015260640160405180910390fd5b60008281526001602090815260409182902080546001600160a01b0319166001600160a01b038516908117909155915191825283917f335721b01866dc23fbee8b6b2c7b1e14d6f05c28cd35a2c934239f94095602a0910160405180910390a25050565b60006020828403121561026257600080fd5b5035919050565b80356001600160a01b038116811461028057600080fd5b919050565b60008060006060848603121561029a57600080fd5b83359250602084013591506102b160408501610269565b90509250925092565b600080604083850312156102cd57600080fd5b823591506102dd60208401610269565b9050925092905056fea26469706673582212202dc308aa86148aca412b5b22386f176e7f166f48d86389748c1afe97ba628b5d64736f6c63430008180033",
+  "devdoc": {
+    "details": "A simple mock ENS registry for local testing",
+    "kind": "dev",
+    "methods": {},
+    "title": "MockENSRegistry",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 6918,
+        "contract": "contracts/MockENSRegistry.sol:MockENSRegistry",
+        "label": "_owners",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_mapping(t_bytes32,t_address)"
+      },
+      {
+        "astId": 6922,
+        "contract": "contracts/MockENSRegistry.sol:MockENSRegistry",
+        "label": "_resolvers",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_mapping(t_bytes32,t_address)"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_bytes32": {
+        "encoding": "inplace",
+        "label": "bytes32",
+        "numberOfBytes": "32"
+      },
+      "t_mapping(t_bytes32,t_address)": {
+        "encoding": "mapping",
+        "key": "t_bytes32",
+        "label": "mapping(bytes32 => address)",
+        "numberOfBytes": "32",
+        "value": "t_address"
+      }
+    }
+  }
+}
