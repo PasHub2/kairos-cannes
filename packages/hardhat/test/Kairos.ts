@@ -11,16 +11,8 @@ describe("Kairos", function () {
     await kairosContract.waitForDeployment();
   });
 
-  describe("Deployment & Nickname", function () {
-    it("Should allow setting a nickname", async function () {
-      const [owner] = await ethers.getSigners();
-      const newNickname = "testuser";
-      await kairosContract.setNickname(newNickname);
-      expect(await kairosContract.nicknames(owner.address)).to.equal(newNickname);
-    });
-
-    // Add more tests for mintMoment and other functions later
-    it("Should allow minting a moment (placeholder test)", async function () {
+  describe("Deployment & Minting", function () {
+    it("Should allow minting a moment", async function () {
       const [owner] = await ethers.getSigners();
       const testCID = "QmTestCID123";
       const testTimestamp = Math.floor(Date.now() / 1000); // Current timestamp
@@ -28,6 +20,16 @@ describe("Kairos", function () {
       await expect(kairosContract.mintMoment(testCID, testTimestamp))
         .to.emit(kairosContract, "MomentCreated")
         .withArgs(owner.address, 0, testCID, testTimestamp); // Assuming first token ID is 0
+    });
+
+    it("Should return correct tokenURI", async function () {
+      // owner wird nicht benötigt
+      const testCID = "QmTestCID123";
+      const testTimestamp = Math.floor(Date.now() / 1000);
+
+      await kairosContract.mintMoment(testCID, testTimestamp);
+      const tokenURI = await kairosContract.tokenURI(0);
+      expect(tokenURI).to.equal(`ipfs://${testCID}`);
     });
   });
 });
