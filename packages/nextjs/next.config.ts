@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+const { withExpo } = require('@expo/next-adapter');
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -37,4 +38,4 @@ if (isIpfs) {
   }
 }
 
-module.exports = nextConfig;
+module.exports = withExpo(nextConfig);

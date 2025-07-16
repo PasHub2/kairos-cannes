@@ -1,5 +1,3 @@
-import type { Config } from "tailwindcss";
-
 declare module "tailwindcss" {
   interface Config {
     daisyui?: {
